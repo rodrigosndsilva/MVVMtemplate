@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.pinkroom.mvvmtemplate.ui.navigation.Screen
 import dev.pinkroom.mvvmtemplate.ui.navigation.SetupNavGraph
+import dev.pinkroom.mvvmtemplate.ui.theme.Background
 import dev.pinkroom.mvvmtemplate.ui.theme.MVVMTemplateTheme
 
 @AndroidEntryPoint
@@ -38,7 +39,8 @@ fun MainActivityContent(
             .fillMaxSize()
             .statusBarsPadding()
             .navigationBarsPadding(),
-    ) {
+        color = Background,
+        ) {
         SetupNavGraph(
             navController = navController,
             startDestination = Screen.Homescreen.route,

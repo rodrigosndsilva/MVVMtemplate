@@ -9,9 +9,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import dev.pinkroom.mvvmtemplate.ui.common.launchEffect
 
 @Composable
 fun Homescreen(
@@ -20,6 +20,7 @@ fun Homescreen(
 ) {
     val state by viewModel.state.collectAsState()
     HomescreenContent(state, viewModel)
+    HandleEffects(navController, viewModel)
 }
 
 @Composable
@@ -32,6 +33,18 @@ private fun HomescreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = state.text,)
+        Text(text = state.text)
+    }
+}
+
+@Composable
+private fun HandleEffects(
+    navController: NavHostController,
+    viewModel: HomeScreenViewModel,
+) {
+    viewModel.effect.launchEffect {
+        when (it) {
+            is HomescreenEffect.NavigateBack -> navController.popBackStack()
+        }
     }
 }

@@ -4,5 +4,5 @@ import dev.pinkroom.peanuts.PeanutState
 
 @PeanutState
 data class HomescreenState(
-    val text: String = "hello world",
+    val text: String = "Hello world!",
 )
